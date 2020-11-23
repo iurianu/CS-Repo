@@ -1,0 +1,168 @@
+%text-center {
+    text-align: center;
+}
+
+%label-mixin {
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    &:before {
+        position: absolute;
+        left: calc(50% - 25px);
+        background-color: #FFF;
+        border-radius: 50%;
+        content: "";
+        background-size: 35px 35px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        width: 50px;
+        height: 50px;
+        bottom: 40px;
+        opacity: 0.2;
+    }
+    @include for-tablet-landscape-down {
+        padding-left: 100px;
+        text-align: left;
+        &:before {
+            left: 25px;
+            bottom: calc(100% - 40px);
+        }
+    }
+}
+
+.modal-dialog-centered {
+    &.modal-extended {
+        max-width: 65%;
+        margin: .5rem auto;
+        @include for-tablet-landscape-up {
+            @include for-desktop-down {
+                max-width: 85%;
+            }
+        }
+        @include for-tablet-landscape-down {
+            max-width: 90%;
+        }
+    }
+    .modal-header {
+        h5 {
+            width: 100%;
+            @extend %text-center;
+        }
+        #bs-gdpr-cookies-modal-message {
+            @extend %text-center;
+        }
+        #bs-gdpr-cookies-modal-advanced-title {
+            @extend %text-center;
+        }
+    }
+    .modal-body {
+        padding: 1rem 4rem;
+        @include for-phone-only {
+            padding: 1rem;
+        }
+    }
+    ul {
+        &.cookie-type-list {
+            list-style:none;
+            padding-left: 0.2rem;
+            display: flex;
+            justify-content: space-between;
+            li {
+                display: flex;
+                width: 20%;
+                height: 150px;
+                margin: 10px 1rem 0 0;
+                padding: 25px 10px;
+                text-align: center;
+                background-color: lightgrey;
+                border: 1px solid lightgrey;
+                align-items: flex-end;
+                &:hover, &:active, &.active {
+                    border: 1px solid grey;
+                }
+                input[type='checkbox']{
+                    display: none;
+                }
+                label {
+                    @extend %label-mixin;
+                }
+            }
+            @include for-tablet-landscape-down {
+                flex-direction: column;
+                li {
+                    width: 100%;
+                    height: 70px;
+                    align-items: center;
+                }
+            }
+        }
+    }
+    label[for="bs-gdpr-cookies-modal-option-necessary"] {        
+        &:before {
+            background-image: url('../images/checked.png');            
+        }
+    }
+    label[for="bs-gdpr-cookies-modal-option-preferences"] {        
+        &:before {
+            background-image: url('../images/cog.png');            
+        }
+    }
+    label[for="bs-gdpr-cookies-modal-option-analytics"] {
+        &:before {
+            background-image: url('../images/chart.png');            
+        }
+    }
+    label[for="bs-gdpr-cookies-modal-option-marketing"] {
+        &:before {
+            background-image: url('../images/advertising.png');            
+        }
+    }
+    span#no-cookie-select {
+        display: block;
+        @extend %label-mixin;
+        &:before {
+            background-image: url('../images/ban.png');  
+        }
+    }
+}
+
+#bs-gdpr-cookies-modal-advanced-types {
+    display: none;
+}
+
+#list-holder {
+    ul {
+        list-style-type: circle;
+        li {
+            font-size: 14px;
+        }
+    }
+    #deselected-options {
+        ul {
+            display: none;
+            &.connectivity-list {
+                display: block;
+            }
+        }
+    }
+}
+
+#cookie-cog {
+    position: fixed;
+    top: calc(100vh - 6rem);
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    a {
+        display: block;
+        img {
+            max-width: 100%;
+            height: auto;
+            padding: 5px;
+            border-radius: 30%;
+        }
+    }
+}
